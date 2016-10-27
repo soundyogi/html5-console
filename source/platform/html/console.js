@@ -602,8 +602,7 @@ lychee.define('lib.console').tags({
 	};
 
 
-	Console.prototype.debug     = Console.prototype.log;
-	Console.prototype.exception = Console.prototype.error;
+	Console.prototype.debug = Console.prototype.log;
 
 
 	// global.console = new Console(Math.random());
