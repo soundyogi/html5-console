@@ -95,13 +95,26 @@ lychee.define('lib.console').tags({
 
 					for (let i = start; i < end; i++) {
 
-						let line = _doc.createElement('li');
-						let data = cache[i];
+						let data  = cache[i];
+						let check = data.args[0];
 
-						line.innerHTML = _render(data.args);
-						line.className = data.type;
+						if (typeof check === 'string' && check.indexOf("%c") !== -1) {
 
-						element.appendChild(line);
+							// XXX: This will keep a clean console
+							// from stupid CSS formatted messages
+
+							continue;
+
+						} else {
+
+							let line = _doc.createElement('li');
+
+							line.innerHTML = _render(data.args);
+							line.className = data.type;
+
+							element.appendChild(line);
+
+						}
 
 					}
 
@@ -438,6 +451,9 @@ lychee.define('lib.console').tags({
 	 */
 
 	let Console = function(id) {
+
+		id = typeof id === 'string' ? id : 'default';
+
 
         let cache = _CACHE[id] || null;
 		if (cache === null) {

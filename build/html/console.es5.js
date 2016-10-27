@@ -86,13 +86,26 @@ var Console = (function(lychee, global, attachments) {
 
 					for (var i = start; i < end; i++) {
 
-						var line = _doc.createElement('li');
-						var data = cache[i];
+						var data  = cache[i];
+						var check = data.args[0];
 
-						line.innerHTML = _render(data.args);
-						line.className = data.type;
+						if (typeof check === 'string' && check.indexOf("%c") !== -1) {
 
-						element.appendChild(line);
+							// XXX: This will keep a clean console
+							// from stupid CSS formatted messages
+
+							continue;
+
+						} else {
+
+							var line = _doc.createElement('li');
+
+							line.innerHTML = _render(data.args);
+							line.className = data.type;
+
+							element.appendChild(line);
+
+						}
 
 					}
 
@@ -429,6 +442,9 @@ var Console = (function(lychee, global, attachments) {
 	 */
 
 	var Console = function(id) {
+
+		id = typeof id === 'string' ? id : 'default';
+
 
         var cache = _CACHE[id] || null;
 		if (cache === null) {
