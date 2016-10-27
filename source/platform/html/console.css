@@ -137,10 +137,6 @@ aside#console i.arguments {
 
 
 
-/*
- * ACTIVE STATE
- */
-
 aside#console.active {
 	min-width: 256px;
 	width: 30%;

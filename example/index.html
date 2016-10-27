@@ -2,23 +2,70 @@
 <html>
 	<head>
 		<meta charset="utf-8">
-		<title>Minimalistic Console Example</title>
-		<script src="../build/html/console.js"></script>
+		<title>HTML5 console</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+		<!-- BOOTSTRAP -->
+		<script src="../build/html/console.es6.js"></script>
+
+		<!-- CUSTOMIZATION -->
+		<style>
+		aside#console.active {
+			width: 100% !important;
+		}
+		</style>
+
 	</head>
 	<body>
-		<h3>Please take a look at the console (top right)</h3>
+		<h1>HTML5 Console Demo</h1>
+		<p>
+			You can open the console by either of these ways:
+		</p>
+		<ul>
+			<li>Click the top right icon</li>
+			<li>Press [Shift] + [C] on the keyboard</li>
+		</ul>
 		<script>
+		console = new Console('new context');
+
 		console.log('Hello world');
 		console.clear(); // Removes first Hello world
 
-		console.log('Second Hello world (after clear)');
-
+		console.log('Hello world (after clear)');
 		console.info('Please enjoy responsibly');
+
+		console.assert(true,  'A truey assertion');
+		console.assert(false, 'A falsy assertion');
+
+		console.time('test');
+
+		console.log({
+			foo: 'bar',
+			bar: 13.37
+		});
+
+		console.log(function(a,b,c,d) {
+
+			if (whatever) {
+				this.shall('be', 'indented');
+			}
+
+			return 'something' + true;
+
+		});
+
+		console.log([0,1,'foo','bar', true]);
 
 		console.warn('All your logs are belong to us');
 
-		console.error('This is a simple error');
-		console.error(new Error('This is an advanced error'));
+		console.error('A simple message');
+
+		console.error(new Error('An Error instance'));
+
+		console.timeEnd('test');
 		</script>
 	</body>
-</html>
+</html>   

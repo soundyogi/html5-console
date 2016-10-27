@@ -30,7 +30,11 @@ override the `console` API for other scripts:
 <!DOCTYPE html>
 <html>
 <head>
-	<script src="./path/to/build/console.min.js">
+	<!-- OLD BROWSER? Use console.es5.js instead -->
+	<script src="./path/to/build/html/console.es6.js">
+
+	<!-- CUSTOMIZATION -->
+	<style>aside#console.active { width: 100% !important; }</style>
 </head>
 <body>
 	<script>

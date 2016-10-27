@@ -22,7 +22,14 @@
 				"variant": "library"
 			}
 		},
-		"files": {}
+		"files": {
+			"html": {
+				"console": [
+					"es5.js",
+					"es6.js"
+				]
+			}
+		}
 	},
 	"source": {
 		"environments": {},
