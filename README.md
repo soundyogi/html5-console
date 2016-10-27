@@ -55,6 +55,17 @@ It is automatically built and deployed to GitHub using the following
 - `bin/publish.sh` pushes the `master` branch to GitHub
 
 
+## Multi-Context Debugging
+
+Having issues finding the right log entry again? Why not create a new
+console instance that you can use for each context?
+
+```javascript
+let instance = new Console('awesome');
+
+instance.log('All your logs are belong to us.');
+```
+
 
 ## User Interface
 
@@ -79,13 +90,14 @@ Instructions TBD
 - `console.assert(condition, ...arguments)`
 - `console.clear()`
 - `console.debug(...arguments)` is a symlink to `console.log(...arguments)`
+- `console.group(label)`
+- `console.groupEnd()`
 - `console.info(...arguments)`
 - `console.log(...arguments)`
 - `console.warn(...arguments)`
 - `console.error(...arguments)`
 - `console.time(label)`
 - `console.timeEnd(label)`
-
 
 ## Unsupported API / Impossible To Implement
 
@@ -99,9 +111,7 @@ bloat the implementation too much to stay performant.
 - `console.count()`
 - `console.dir()`
 - `console.dirxml()`
-- `console.group(label)`
 - `console.groupCollapsed()`
-- `console.groupEnd(label)`
 - `console.markTimelime()`
 - `console.profile()`
 - `console.profileEnd()`

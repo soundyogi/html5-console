@@ -2,18 +2,24 @@
 aside#console {
 	display: block;
 	position: fixed;
-	width: auto;
-	height: 32px;
+	width: 44px;
+	height: 44px;
 	top: 0px;
 	right: 0px;
 	bottom: 0px;
 	left: auto;
-	padding: 8px;
+	margin: 0px;
+	padding: 0px;
 	color: #ffffff;
+	font-family: 'Monospace';
+	font-size: 16px;
+	font-style: normal;
+	font-weight: normal;
 	background: #383c4a;
 	border: 0px none;
-	border-radius: 4px 0px 0px 4px;
+	border-radius: 4px;
 	overflow: hidden;
+	transition: all 200ms ease-out;
 	z-index: 65535;
 }
 
@@ -29,31 +35,45 @@ aside#console::-webkit-scrollbar-thumb {
 	cursor: scroll;
 }
 
-aside#console:after {
+aside#console:before {
 	display: block;
-	content: "➠ Console";
+	content: ">_";
+	width: 44px;
+	height: 44px;
 	color: #ffffff;
-	font-size: 32px;
-	line-height: 32px;
+	font-size: 28px;
+	font-weight: bold;
+	line-height: 40px;
 	text-align: center;
+	vertical-align: middle;
 	cursor: pointer;
+	z-index: 2;
+	transition: all 200ms ease-out;
 }
 
 aside#console > ul {
-	display: none;
+	display: block;
 	margin: 0px;
 	padding: 0px;
-	font-family: 'Monospace';
-	font-weight: normal;
-	font-style: normal;
-	font-size: 16px;
 	line-height: 2em;
+	z-index: 1;
+	opacity: 0;
+	transition: opacity 200ms ease-out;
 }
 
-aside#console > ul:empty:before {
+aside#console > ul:empty:after {
 	display: block;
 	content: "console \""attr(data-id)"\" is empty.";
 	text-align: center;
+}
+
+aside#console > ul[data-id]:before {
+	display: block;
+	content: "console \""attr(data-id)"\"";
+	text-align: center;
+	font-weight: bold;
+	font-size: 24px;
+	margin-top: 2em;
 }
 
 aside#console > ul > li {
@@ -145,18 +165,21 @@ aside#console i.arguments {
 
 aside#console.active {
 	min-width: 256px;
-	width: 30%;
-	height: auto;
-	padding: 0px;
+	width: calc(33% - 16px);
+	height: 100%;
 	overflow-x: hidden;
 	overflow-y: auto;
+	transition: all 200ms ease-out;
 }
 
-aside#console.active:after {
-	display: none;
+aside#console.active:before {
+	content: ">_ console";
+	width: auto;
+	transition: all 200ms ease-out;
 }
 
 aside#console.active > ul {
-	display: block;
+	opacity: 1;
+	transition: opacity 200ms 200ms ease-out;
 }
 

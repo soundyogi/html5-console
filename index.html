@@ -71,6 +71,11 @@
 
 				console.timeEnd('test');
 
+				myother = new Console('other');
+				myother.log('Woohoo');
+
+				myotherother = new Console('empty other');
+
 			}, 1000);
 
 		})(lychee, typeof global !== 'undefined' ? global : this);

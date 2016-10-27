@@ -482,9 +482,10 @@ lychee.define('lib.console').tags({
 				}
 
 				this.__cache.push({
-					type: 'log',
-					time: Date.now(),
-					args: args
+					type:  'log',
+					time:  Date.now(),
+					args:  args,
+					stack: null
 				});
 
 			}
@@ -494,23 +495,6 @@ lychee.define('lib.console').tags({
 		clear: function() {
 
 			this.__cache = _CACHE[this.__id] = [];
-
-		},
-
-		info: function() {
-
-			let al   = arguments.length;
-			let args = [];
-
-			for (let a = 0; a < al; a++) {
-				args.push(arguments[a]);
-			}
-
-			this.__cache.push({
-				type: 'info',
-				time: Date.now(),
-				args: args
-			});
 
 		},
 
@@ -537,6 +521,24 @@ lychee.define('lib.console').tags({
 
 		},
 
+		info: function() {
+
+			let al   = arguments.length;
+			let args = [];
+
+			for (let a = 0; a < al; a++) {
+				args.push(arguments[a]);
+			}
+
+			this.__cache.push({
+				type:  'info',
+				time:  Date.now(),
+				args:  args,
+				stack: null
+			});
+
+		},
+
 		log: function() {
 
 			let al   = arguments.length;
@@ -547,9 +549,10 @@ lychee.define('lib.console').tags({
 			}
 
 			this.__cache.push({
-				type: 'log',
-				time: Date.now(),
-				args: args
+				type:  'log',
+				time:  Date.now(),
+				args:  args,
+				stack: null
 			});
 
 		},
@@ -574,8 +577,10 @@ lychee.define('lib.console').tags({
                 let diff = (Date.now() - timer).toPrecision(3);
 
 				this.__cache.push({
-					type: 'time',
-					args: [ label + ': ' + diff + 'ms' ]
+					type:  'time',
+					time:  Date.now(),
+					args:  [ label + ': ' + diff + 'ms' ],
+					stack: null
 				});
 
 			}
@@ -592,9 +597,10 @@ lychee.define('lib.console').tags({
 			}
 
 			this.__cache.push({
-				type: 'warn',
-				time: Date.now(),
-				args: args
+				type:  'warn',
+				time:  Date.now(),
+				args:  args,
+				stack: null
 			});
 
 		}
@@ -602,10 +608,26 @@ lychee.define('lib.console').tags({
 	};
 
 
-	Console.prototype.debug = Console.prototype.log;
 
+	// Stub APIs so nothing breaks
 
-	// global.console = new Console(Math.random());
+	const _stub = function() {};
+
+	Console.prototype.count          = _stub;
+	Console.prototype.debug          = Console.prototype.log;
+	Console.prototype.dir            = _stub;
+	Console.prototype.dirxml         = _stub;
+	Console.prototype._exception     = Console.prototype.error;
+	Console.prototype.group          = _stub;
+	Console.prototype.groupCollapsed = _stub;
+	Console.prototype.groupEnd       = _stub;
+	Console.prototype.markTimeline   = _stub;
+	Console.prototype.profile        = _stub;
+	Console.prototype.profileEnd     = _stub;
+	Console.prototype.timeline       = _stub;
+	Console.prototype.timelineEnd    = _stub;
+	Console.prototype.timeStamp      = _stub;
+	Console.prototype.trace          = _stub;
 
 
 	return Console;

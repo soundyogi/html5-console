@@ -2,7 +2,7 @@ const Console = (function(lychee, global, attachments) {
 
 	const _console  = global.console;
 	const _doc      = global.document;
-	const _CSS      = {buffer:["aside#console {display:block;position:fixed;width:auto;height:32px;top:0px;right:0px;bottom:0px;left:auto;padding:8px;color:#ffffff;background:#383c4a;border:0px none;border-radius:4px 0px 0px 4px;overflow:hidden;z-index:65535;}","aside#console::-webkit-scrollbar {width:8px;background:transparent;}","aside#console::-webkit-scrollbar-thumb {border:1px solid #383d48;border-radius:8px;background:#686e7a;cursor:scroll;}","aside#console:after {display:block;content:\"➠ Console\";color:#ffffff;font-size:32px;line-height:32px;text-align:center;cursor:pointer;}","aside#console > ul {display:none;margin:0px;padding:0px;font-family:'Monospace';font-weight:normal;font-style:normal;font-size:16px;line-height:2em;}","aside#console > ul:empty:before {display:block;content:\"console \\\"\"attr(data-id)\"\\\" is empty.\";text-align:center;}","aside#console > ul > li {display:block;list-style:none;margin:0px;padding:0px;border-bottom:1px solid #272a34;}","aside#console > ul > li:last-of-type {border:0px none;}","aside#console > ul > li:before {content:\"(L)\";display:inline;margin:0px 1em;}","aside#console > ul > li.error:before {content:\"(E)\";color:#f25056;}","aside#console > ul > li.info:before {content:\"(I)\";color:#4878b2;}","aside#console > ul > li.time:before {content:\"(T)\";color:#4878b2;}","aside#console > ul > li.warn:before {content:\"(W)\";color:#fac536;}","aside#console pre {display:block;margin:0px 0px 2em 0px;padding:0px 1em;line-height:1.5em;background:#2d323d;}","aside#console a {display:inline;color:#02acde;text-decoration:none;}","aside#console i {display:inline;font-weight:normal;font-style:normal;}","aside#console i.boolean {color:#02acde;}","aside#console i.number,aside#console i.error {color:#b0015e;}","aside#console i.string {color:#48d05d;}","aside#console i.null,aside#console i.undefined,aside#console i.function {color:#d78787;}","aside#console i.property {color:#ffffff;}","aside#console i.arguments {color:#f8d34f;}","aside#console.active {min-width:256px;width:30%;height:auto;padding:0px;overflow-x:hidden;overflow-y:auto;}","aside#console.active:after {display:none;}","aside#console.active > ul {display:block;}"].join('\n')};
+	const _CSS      = {buffer:["aside#console {display:block;position:fixed;width:44px;height:44px;top:0px;right:0px;bottom:0px;left:auto;margin:0px;padding:0px;color:#ffffff;font-family:'Monospace';font-size:16px;font-style:normal;font-weight:normal;background:#383c4a;border:0px none;border-radius:4px;overflow:hidden;transition:all 200ms ease-out;z-index:65535;}","aside#console::-webkit-scrollbar {width:8px;background:transparent;}","aside#console::-webkit-scrollbar-thumb {border:1px solid #383d48;border-radius:8px;background:#686e7a;cursor:scroll;}","aside#console:before {display:block;content:\">_\";width:44px;height:44px;color:#ffffff;font-size:28px;font-weight:bold;line-height:40px;text-align:center;vertical-align:middle;cursor:pointer;z-index:2;transition:all 200ms ease-out;}","aside#console > ul {display:block;margin:0px;padding:0px;line-height:2em;z-index:1;opacity:0;transition:opacity 200ms ease-out;}","aside#console > ul:empty:after {display:block;content:\"console \\\"\"attr(data-id)\"\\\" is empty.\";text-align:center;}","aside#console > ul[data-id]:before {display:block;content:\"console \\\"\"attr(data-id)\"\\\"\";text-align:center;font-weight:bold;font-size:24px;margin-top:2em;}","aside#console > ul > li {display:block;list-style:none;margin:0px;padding:0px;border-bottom:1px solid #272a34;}","aside#console > ul > li:last-of-type {border:0px none;}","aside#console > ul > li:before {content:\"(L)\";display:inline;margin:0px 1em;}","aside#console > ul > li.error:before {content:\"(E)\";color:#f25056;}","aside#console > ul > li.info:before {content:\"(I)\";color:#4878b2;}","aside#console > ul > li.time:before {content:\"(T)\";color:#4878b2;}","aside#console > ul > li.warn:before {content:\"(W)\";color:#fac536;}","aside#console pre {display:block;margin:0px 0px 2em 0px;padding:0px 1em;line-height:1.5em;background:#2d323d;}","aside#console a {display:inline;color:#02acde;text-decoration:none;}","aside#console i {display:inline;font-weight:normal;font-style:normal;}","aside#console i.boolean {color:#02acde;}","aside#console i.number,aside#console i.error {color:#b0015e;}","aside#console i.string {color:#48d05d;}","aside#console i.null,aside#console i.undefined,aside#console i.function {color:#d78787;}","aside#console i.property {color:#ffffff;}","aside#console i.arguments {color:#f8d34f;}","aside#console.active {min-width:256px;width:calc(33% - 16px);height:100%;overflow-x:hidden;overflow-y:auto;transition:all 200ms ease-out;}","aside#console.active:before {content:\">_ console\";width:auto;transition:all 200ms ease-out;}","aside#console.active > ul {opacity:1;transition:opacity 200ms 200ms ease-out;}"].join('\n')};
 	const _CACHE    = {};
 	const _WRAPPER  = _doc.createElement('aside');
 	const _ELEMENTS = {};
@@ -473,9 +473,10 @@ const Console = (function(lychee, global, attachments) {
 				}
 
 				this.__cache.push({
-					type: 'log',
-					time: Date.now(),
-					args: args
+					type:  'log',
+					time:  Date.now(),
+					args:  args,
+					stack: null
 				});
 
 			}
@@ -485,23 +486,6 @@ const Console = (function(lychee, global, attachments) {
 		clear: function() {
 
 			this.__cache = _CACHE[this.__id] = [];
-
-		},
-
-		info: function() {
-
-			let al   = arguments.length;
-			let args = [];
-
-			for (let a = 0; a < al; a++) {
-				args.push(arguments[a]);
-			}
-
-			this.__cache.push({
-				type: 'info',
-				time: Date.now(),
-				args: args
-			});
 
 		},
 
@@ -528,6 +512,24 @@ const Console = (function(lychee, global, attachments) {
 
 		},
 
+		info: function() {
+
+			let al   = arguments.length;
+			let args = [];
+
+			for (let a = 0; a < al; a++) {
+				args.push(arguments[a]);
+			}
+
+			this.__cache.push({
+				type:  'info',
+				time:  Date.now(),
+				args:  args,
+				stack: null
+			});
+
+		},
+
 		log: function() {
 
 			let al   = arguments.length;
@@ -538,9 +540,10 @@ const Console = (function(lychee, global, attachments) {
 			}
 
 			this.__cache.push({
-				type: 'log',
-				time: Date.now(),
-				args: args
+				type:  'log',
+				time:  Date.now(),
+				args:  args,
+				stack: null
 			});
 
 		},
@@ -565,8 +568,10 @@ const Console = (function(lychee, global, attachments) {
                 let diff = (Date.now() - timer).toPrecision(3);
 
 				this.__cache.push({
-					type: 'time',
-					args: [ label + ': ' + diff + 'ms' ]
+					type:  'time',
+					time:  Date.now(),
+					args:  [ label + ': ' + diff + 'ms' ],
+					stack: null
 				});
 
 			}
@@ -583,9 +588,10 @@ const Console = (function(lychee, global, attachments) {
 			}
 
 			this.__cache.push({
-				type: 'warn',
-				time: Date.now(),
-				args: args
+				type:  'warn',
+				time:  Date.now(),
+				args:  args,
+				stack: null
 			});
 
 		}
@@ -593,11 +599,26 @@ const Console = (function(lychee, global, attachments) {
 	};
 
 
-	Console.prototype.debug     = Console.prototype.log;
-	Console.prototype.exception = Console.prototype.error;
 
+	// Stub APIs so nothing breaks
 
-	// global.console = new Console(Math.random());
+	const _stub = function() {};
+
+	Console.prototype.count          = _stub;
+	Console.prototype.debug          = Console.prototype.log;
+	Console.prototype.dir            = _stub;
+	Console.prototype.dirxml         = _stub;
+	Console.prototype._exception     = Console.prototype.error;
+	Console.prototype.group          = _stub;
+	Console.prototype.groupCollapsed = _stub;
+	Console.prototype.groupEnd       = _stub;
+	Console.prototype.markTimeline   = _stub;
+	Console.prototype.profile        = _stub;
+	Console.prototype.profileEnd     = _stub;
+	Console.prototype.timeline       = _stub;
+	Console.prototype.timelineEnd    = _stub;
+	Console.prototype.timeStamp      = _stub;
+	Console.prototype.trace          = _stub;
 
 
 	return Console;
