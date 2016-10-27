@@ -78,6 +78,11 @@ aside#console > ul > li.info:before {
 	color: #4878b2;
 }
 
+aside#console > ul > li.time:before {
+	content: "(T)";
+	color: #4878b2;
+}
+
 aside#console > ul > li.warn:before {
 	content: "(W)";
 	color: #fac536;

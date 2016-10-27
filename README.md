@@ -1,15 +1,30 @@
 
-# HTML5 console
+# HTML5 console Polyfill
 
 This is a minimalistic console that allows using the
 [Console API](https://developer.mozilla.org/en-US/docs/Web/API/console)
 inside Browsers or Runtimes that don't ship with a 
-proper console.
+proper console, especially for mobile devices.
+
+brought to you as libre software with joy and pride by [@cookiengineer](http://cookie.engineer).
+
+Support our libre Bot Cloud via BTC [1CamMuvrFU1QAMebPoDsL3JrioVDoxezY2](bitcoin:1CamMuvrFU1QAMebPoDsL3JrioVDoxezY2?amount=0.5&label=lychee.js%20Support).
+
+
+
+## Overview
 
 Don't want to deal with Safari or WebKit Mobile and
-its debugging pipeline of > 4GB+? Then worry no more,
-the HTML5 console is a simple JS file that you can
-embed like so (make sure it's inside `<head>` !!!).
+its debugging pipeline of > 4GB+?
+
+Don't want to deal with `debugger.html` and the whole
+NPM build toolchain?
+
+Worry no more, the HTML5 console is a simple JS file
+that you can plug-in whereever and whenever you want.
+
+Just insert it at the top of `<head>` so it can
+override the `console` API for other scripts:
 
 ```html
 <!DOCTYPE html>
@@ -27,10 +42,25 @@ embed like so (make sure it's inside `<head>` !!!).
 </body>
 ```
 
+This library is a project made with [lychee.js](https://lychee.js.org).
+
+It is automatically built and deployed to GitHub using the following
+`lycheejs-fertilizer` integration scripts:
+
+- `bin/build.sh` builds the `console.min.js` and inlines the necessary CSS
+- `bin/publish.sh` pushes the `master` branch to GitHub
+
+
+
 ## User Interface
 
-The User Interface allows easy debugging and has neat
-integrations like filters and watchers:
+The UI integration is super-performant and as easily
+implemented as possible.
+
+You can open the Console in two ways:
+
+- Click or Touch on the fixed Icon on the Top Right (e.g. on mobile).
+- Use the keyboard and press `[Shift] + [C]` to toggle the Console.
 
 ![screenshot.png](screenshot.png)
 
@@ -40,31 +70,43 @@ integrations like filters and watchers:
 Instructions TBD
 
 
-## Official API / Features
+## Official API
 
-- `console.assert(condition)`
+- `console.assert(condition, ...arguments)`
 - `console.clear()`
+- `console.debug(...arguments)` is a symlink to `console.log(...arguments)`
+- `console.exception(...arguments)` is a symlink to `console.error(...arguments)`
 - `console.log(...arguments)`
 - `console.info(...arguments)`
 - `console.warn(...arguments)`
 - `console.error(...arguments)`
-- `console.group(name)`
-- `console.groupEnd(name)`
-- `console.trace()`
+- `console.time(label)`
+- `console.timeEnd(label)`
 
 
-## Unsupported API / Not Yet Implemented
+## Unsupported API / Impossible To Implement
+
+These Console API methods were declared to be too
+high in complexity to be implemented.
+
+Reason is most likely that the feature needs a
+full-blown parser or a low-level VM API that will
+bloat the implementation too much to stay performant.
 
 - `console.count()`
-- `console.debug()`
 - `console.dir()`
 - `console.dirxml()`
-- `console.exception()`
+- `console.group(label)`
 - `console.groupCollapsed()`
+- `console.groupEnd(label)`
 - `console.profile()`
 - `console.profileEnd()`
 - `console.table()`
-- `console.time()`
-- `console.timeEnd()`
 - `console.timeStamp()`
+- `console.trace()`
+
+
+## License
+
+This project is released under [GNU GPL 3](./LICENSE_GPL3.txt) license.
 

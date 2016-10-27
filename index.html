@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta charset="utf-8">
-		<title>HTML5 Console</title>
+		<title>HTML5 console</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
 		<meta name="apple-mobile-web-app-capable" content="yes">
 		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -41,6 +41,10 @@
 				console.log('Hello world (after clear)');
 				console.info('Please enjoy responsibly');
 
+				console.assert(true,  'A truey assertion');
+				console.assert(false, 'A falsy assertion');
+
+				console.time('test');
 
 				console.log({
 					foo: 'bar',
@@ -64,6 +68,8 @@
 				console.error('A simple message');
 
 				console.error(new Error('An Error instance'));
+
+				console.timeEnd('test');
 
 			}, 1000);
 

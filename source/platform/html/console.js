@@ -440,13 +440,35 @@ lychee.define('lib.console').tags({
 		}
 
 
-		this.__id    = id;
-		this.__cache = cache;
+		this.__id     = id;
+		this.__cache  = cache;
+		this.__timers = {};
 
 	};
 
 
 	Console.prototype = {
+
+		assert: function(condition) {
+
+			if (!condition) {
+
+				let al   = arguments.length;
+				let args = [];
+
+				for (let a = 1; a < al; a++) {
+					args.push(arguments[a]);
+				}
+
+				this.__cache.push({
+					type: 'log',
+					time: Date.now(),
+					args: args
+				});
+
+			}
+
+		},
 
 		clear: function() {
 
@@ -511,6 +533,34 @@ lychee.define('lib.console').tags({
 
 		},
 
+		time: function(label) {
+
+			label = typeof label === 'string' ? label : 'default';
+
+
+			this.__timers[label] = Date.now();
+
+		},
+
+		timeEnd: function(label) {
+
+			label = typeof label === 'string' ? label : 'default';
+
+
+			let timer = this.__timers[label] || null;
+			if (timer !== null) {
+
+                let diff = (Date.now() - timer).toPrecision(3);
+
+				this.__cache.push({
+					type: 'time',
+					args: [ label + ': ' + diff + 'ms' ]
+				});
+
+			}
+
+		},
+
 		warn: function() {
 
 			let al   = arguments.length;
@@ -530,6 +580,9 @@ lychee.define('lib.console').tags({
 
 	};
 
+
+	Console.prototype.debug     = Console.prototype.log;
+	Console.prototype.exception = Console.prototype.error;
 
 
 	// global.console = new Console(Math.random());
