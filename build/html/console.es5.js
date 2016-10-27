@@ -2,7 +2,7 @@ var Console = (function(lychee, global, attachments) {
 
 	var _console  = global.console;
 	var _doc      = global.document;
-	var _CSS      = {buffer:["aside#console {display:block;position:fixed;width:44px;height:44px;top:0px;right:0px;bottom:0px;left:auto;margin:0px;padding:0px;color:#ffffff;font-family:'Monospace';font-size:16px;font-style:normal;font-weight:normal;background:#383c4a;border:0px none;border-radius:4px;overflow:hidden;transition:all 200ms ease-out;z-index:65535;}","aside#console::-webkit-scrollbar {width:8px;background:transparent;}","aside#console::-webkit-scrollbar-thumb {border:1px solid #383d48;border-radius:8px;background:#686e7a;cursor:scroll;}","aside#console:before {display:block;content:\">_\";width:44px;height:44px;color:#ffffff;font-size:28px;font-weight:bold;line-height:40px;text-align:center;vertical-align:middle;cursor:pointer;z-index:2;transition:all 200ms ease-out;}","aside#console > ul {display:block;margin:0px;padding:0px;line-height:2em;z-index:1;opacity:0;transition:opacity 200ms ease-out;}","aside#console > ul:empty:after {display:block;content:\"console \\\"\"attr(data-id)\"\\\" is empty.\";text-align:center;}","aside#console > ul[data-id]:before {display:block;content:\"console \\\"\"attr(data-id)\"\\\"\";text-align:center;font-weight:bold;font-size:24px;margin-top:2em;}","aside#console > ul > li {display:block;list-style:none;margin:0px;padding:0px;border-bottom:1px solid #272a34;}","aside#console > ul > li:last-of-type {border:0px none;}","aside#console > ul > li:before {content:\"(L)\";display:inline;margin:0px 1em;}","aside#console > ul > li.error:before {content:\"(E)\";color:#f25056;}","aside#console > ul > li.info:before {content:\"(I)\";color:#4878b2;}","aside#console > ul > li.time:before {content:\"(T)\";color:#4878b2;}","aside#console > ul > li.warn:before {content:\"(W)\";color:#fac536;}","aside#console pre {display:block;margin:0px 0px 2em 0px;padding:0px 1em;line-height:1.5em;background:#2d323d;}","aside#console a {display:inline;color:#02acde;text-decoration:none;}","aside#console i {display:inline;font-weight:normal;font-style:normal;}","aside#console i.boolean {color:#02acde;}","aside#console i.number,aside#console i.error {color:#b0015e;}","aside#console i.string {color:#48d05d;}","aside#console i.null,aside#console i.undefined,aside#console i.function {color:#d78787;}","aside#console i.property {color:#ffffff;}","aside#console i.arguments {color:#f8d34f;}","aside#console.active {min-width:256px;width:calc(33% - 16px);height:100%;overflow-x:hidden;overflow-y:auto;transition:all 200ms ease-out;}","aside#console.active:before {content:\">_ console\";width:auto;transition:all 200ms ease-out;}","aside#console.active > ul {opacity:1;transition:opacity 200ms 200ms ease-out;}"].join('\n')};
+	var _CSS      = {buffer:["aside#console {display:block;position:fixed;width:44px;height:44px;top:0px;right:0px;bottom:0px;left:auto;margin:0px;padding:0px;color:#ffffff;font-family:'Monospace';font-size:16px;font-style:normal;font-weight:normal;background:#383c4a;border:0px none;border-radius:4px;overflow:hidden;transition:all 200ms ease-out;z-index:65535;}","aside#console::-webkit-scrollbar {width:8px;background:transparent;}","aside#console::-webkit-scrollbar-thumb {border:1px solid #383d48;border-radius:8px;background:#686e7a;cursor:scroll;}","aside#console:before {display:block;content:\">_\";width:44px;height:44px;color:#ffffff;font-size:28px;font-weight:bold;line-height:40px;text-align:center;vertical-align:middle;cursor:pointer;z-index:2;transition:all 200ms ease-out;}","aside#console > ul {display:block;margin:0px;padding:0px;line-height:2em;z-index:1;opacity:0;transition:opacity 200ms ease-out;}","aside#console > ul:empty:after {display:block;content:\"console \\\"\"attr(data-id)\"\\\" is empty.\";text-align:center;}","aside#console > ul[data-id]:before {display:block;content:\"console \\\"\"attr(data-id)\"\\\"\";text-align:center;font-weight:bold;font-size:24px;margin-top:2em;}","aside#console > ul > li {display:block;list-style:none;margin:0px;padding:0px;border-bottom:1px solid #272a34;}","aside#console > ul > li:last-of-type {border:0px none;}","aside#console > ul > li:before {content:\"(L)\";display:inline;margin:0px 1em;}","aside#console > ul > li.error:before {content:\"(E)\";color:#f25056;}","aside#console > ul > li.info:before {content:\"(I)\";color:#4878b2;}","aside#console > ul > li.time:before {content:\"(T)\";color:#4878b2;}","aside#console > ul > li.warn:before {content:\"(W)\";color:#fac536;}","aside#console a {display:inline;color:#02acde;text-decoration:none;}","aside#console i {display:inline;font-weight:normal;font-style:normal;}","aside#console i.boolean {color:#02acde;}","aside#console i.number,aside#console i.error {color:#b0015e;}","aside#console i.string {color:#48d05d;}","aside#console i.null,aside#console i.undefined,aside#console i.function {color:#d78787;}","aside#console i.property {color:#ffffff;}","aside#console i.arguments {color:#f8d34f;}","aside#console pre {display:block;margin:0px 0px 2em 0px;padding:0px 1em;line-height:1.5em;background:#2d323d;}","aside#console table {width:100%;margin:0px auto;padding:0px 1em;background:#2d323d;border-spacing:0px;border-collapse:separate;}","aside#console table th,aside#console table td {margin:0px;padding:2px 0.5em;border:0px solid transparent;border-bottom:1px solid #383c4a;}","aside#console table tr:hover td {background:#383c4a;}","aside#console table tr:last-child td {border:0px none;}","aside#console.active {min-width:256px;width:calc(33% - 16px);height:100%;overflow-x:hidden;overflow-y:auto;transition:all 200ms ease-out;}","aside#console.active:before {content:\">_ console\";width:auto;transition:all 200ms ease-out;}","aside#console.active > ul {opacity:1;transition:opacity 200ms 200ms ease-out;}"].join('\n')};
 	var _CACHE    = {};
 	var _WRAPPER  = _doc.createElement('aside');
 	var _ELEMENTS = {};
@@ -26,6 +26,13 @@ var Console = (function(lychee, global, attachments) {
 	/*
 	 * HELPERS
 	 */
+
+	var _Table = function(labels, values) {
+
+		this.labels = labels;
+		this.values = values;
+
+	};
 
 	var _initialize = function() {
 
@@ -125,6 +132,11 @@ var Console = (function(lychee, global, attachments) {
 
 	var _render = function(args) {
 
+		if (!(args instanceof Array)) {
+			args = [ args ];
+		}
+
+
 		var html = [];
 
 		for (var a = 0, al = args.length; a < al; a++) {
@@ -144,7 +156,9 @@ var Console = (function(lychee, global, attachments) {
 				html.push('<pre class="error">' + _render_error(data) + '</pre>');
 			} else if (typeof data === 'object') {
 
-				if (data instanceof Array) {
+				if (data instanceof _Table) {
+					html.push('' + _render_table(data) + '');
+				} else if (data instanceof Array) {
 					html.push('<pre class="array">' + _render_array(data) + '</pre>');
 				} else if (data instanceof Object) {
 					html.push('<pre class="object">' + _render_object(data) + '</pre>');
@@ -393,6 +407,68 @@ var Console = (function(lychee, global, attachments) {
 
 	};
 
+	var _render_table = function(table) {
+
+		var html   = [];
+		var labels = table.labels;
+		var values = table.values;
+
+		// TODO: Values are objects or arrays?
+
+		_console.log(table);
+
+		html.push('<table>');
+
+
+		html.push('<tr><th>(index)</th>');
+
+		for (var l = 0, ll = labels.length; l < ll; l++) {
+			html.push('<th>' + labels[l] + '</th>');
+		}
+
+		html.push('</tr>');
+
+
+		if (values instanceof Array) {
+
+			values.forEach(function(value, v) {
+
+				html.push('<tr><td>' + v + '</td>');
+
+				labels.forEach(function(label) {
+					html.push('<td>' + _render(value[label]) + '</td>');
+				});
+
+				html.push('</tr>');
+
+			});
+
+		} else if (values instanceof Object) {
+
+			for (var v in values) {
+
+				var value = values[v];
+
+				html.push('<tr><td>' + v + '</td>');
+
+				labels.forEach(function(label) {
+					html.push('<td>' + _render(value[label]) + '</td>');
+				});
+
+				html.push('</tr>');
+
+			}
+
+		}
+
+
+		html.push('</table>');
+
+
+		return html.join('\n');
+
+	};
+
 	var _trace_stack = function(err) {
 
 		var prepare = Error.prepareStackTrace;
@@ -545,6 +621,48 @@ var Console = (function(lychee, global, attachments) {
 				args:  args,
 				stack: null
 			});
+
+		},
+
+		table: function(data, labels) {
+
+			data   = typeof data === 'object' ? data   : null;
+			labels = labels instanceof Array  ? labels : null;
+
+
+			if (data !== null) {
+
+				if (labels === null) {
+
+					var check = {};
+					for (var prop in data) {
+						check = data[prop];
+						break;
+					}
+
+					labels = Object.keys(check).sort(function(a, b) {
+
+						var a1 = a.toLowerCase();
+						var b1 = b.toLowerCase();
+
+						if (a1 < b1) return -1;
+						if (a1 > b1) return  1;
+
+						return 0;
+
+					});
+
+				}
+
+
+				this.__cache.push({
+					type:  'table',
+					time:  Date.now(),
+					args:  [ new _Table(labels, data) ],
+					stack: null
+				});
+
+			}
 
 		},
 

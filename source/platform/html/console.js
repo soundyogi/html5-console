@@ -36,6 +36,13 @@ lychee.define('lib.console').tags({
 	 * HELPERS
 	 */
 
+	const _Table = function(labels, values) {
+
+		this.labels = labels;
+		this.values = values;
+
+	};
+
 	const _initialize = function() {
 
 		let check = _doc.querySelector('aside#console');
@@ -134,6 +141,11 @@ lychee.define('lib.console').tags({
 
 	const _render = function(args) {
 
+		if (!(args instanceof Array)) {
+			args = [ args ];
+		}
+
+
 		let html = [];
 
 		for (let a = 0, al = args.length; a < al; a++) {
@@ -153,7 +165,9 @@ lychee.define('lib.console').tags({
 				html.push('<pre class="error">' + _render_error(data) + '</pre>');
 			} else if (typeof data === 'object') {
 
-				if (data instanceof Array) {
+				if (data instanceof _Table) {
+					html.push('' + _render_table(data) + '');
+				} else if (data instanceof Array) {
 					html.push('<pre class="array">' + _render_array(data) + '</pre>');
 				} else if (data instanceof Object) {
 					html.push('<pre class="object">' + _render_object(data) + '</pre>');
@@ -402,6 +416,68 @@ lychee.define('lib.console').tags({
 
 	};
 
+	const _render_table = function(table) {
+
+		let html   = [];
+		let labels = table.labels;
+		let values = table.values;
+
+		// TODO: Values are objects or arrays?
+
+		_console.log(table);
+
+		html.push('<table>');
+
+
+		html.push('<tr><th>(index)</th>');
+
+		for (let l = 0, ll = labels.length; l < ll; l++) {
+			html.push('<th>' + labels[l] + '</th>');
+		}
+
+		html.push('</tr>');
+
+
+		if (values instanceof Array) {
+
+			values.forEach(function(value, v) {
+
+				html.push('<tr><td>' + v + '</td>');
+
+				labels.forEach(function(label) {
+					html.push('<td>' + _render(value[label]) + '</td>');
+				});
+
+				html.push('</tr>');
+
+			});
+
+		} else if (values instanceof Object) {
+
+			for (let v in values) {
+
+				let value = values[v];
+
+				html.push('<tr><td>' + v + '</td>');
+
+				labels.forEach(function(label) {
+					html.push('<td>' + _render(value[label]) + '</td>');
+				});
+
+				html.push('</tr>');
+
+			}
+
+		}
+
+
+		html.push('</table>');
+
+
+		return html.join('\n');
+
+	};
+
 	const _trace_stack = function(err) {
 
 		let prepare = Error.prepareStackTrace;
@@ -554,6 +630,48 @@ lychee.define('lib.console').tags({
 				args:  args,
 				stack: null
 			});
+
+		},
+
+		table: function(data, labels) {
+
+			data   = typeof data === 'object' ? data   : null;
+			labels = labels instanceof Array  ? labels : null;
+
+
+			if (data !== null) {
+
+				if (labels === null) {
+
+					let check = {};
+					for (var prop in data) {
+						check = data[prop];
+						break;
+					}
+
+					labels = Object.keys(check).sort(function(a, b) {
+
+						let a1 = a.toLowerCase();
+						let b1 = b.toLowerCase();
+
+						if (a1 < b1) return -1;
+						if (a1 > b1) return  1;
+
+						return 0;
+
+					});
+
+				}
+
+
+				this.__cache.push({
+					type:  'table',
+					time:  Date.now(),
+					args:  [ new _Table(labels, data) ],
+					stack: null
+				});
+
+			}
 
 		},
 

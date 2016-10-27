@@ -114,14 +114,6 @@ aside#console > ul > li.warn:before {
 	color: #fac536;
 }
 
-aside#console pre {
-	display: block;
-	margin: 0px 0px 2em 0px;
-	padding: 0px 1em;
-	line-height: 1.5em;
-	background: #2d323d;
-}
-
 aside#console a {
 	display: inline;
 	color: #02acde;
@@ -159,6 +151,39 @@ aside#console i.property {
 
 aside#console i.arguments {
 	color: #f8d34f;
+}
+
+aside#console pre {
+	display: block;
+	margin: 0px 0px 2em 0px;
+	padding: 0px 1em;
+	line-height: 1.5em;
+	background: #2d323d;
+}
+
+aside#console table {
+	width: 100%;
+	margin: 0px auto;
+	padding: 0px 1em;
+	background: #2d323d;
+	border-spacing: 0px;
+	border-collapse: separate;
+}
+
+aside#console table th,
+aside#console table td {
+	margin: 0px;
+	padding: 2px 0.5em;
+	border: 0px solid transparent;
+	border-bottom: 1px solid #383c4a;
+}
+
+aside#console table tr:hover td {
+	background: #383c4a;
+}
+
+aside#console table tr:last-child td {
+	border: 0px none;
 }
 
 

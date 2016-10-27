@@ -71,7 +71,19 @@
 		// }, 2000);
 
 		myother = new Console('other');
-		myother.log('Woohoo');
+		myother.info('Awesome inspection tables');
+
+		myother.table({
+			first: { foo: 1, bar: 2 },
+			last:  { foo: 2, bar: 3 }
+		});
+
+		myother.table([
+			{ foo: 1, bar: 2, qux: 'this'    },
+			{ foo: 2, bar: 3, qux: 'is'      },
+			{ foo: 3, bar: 4, qux: 'an'      },
+			{ foo: 4, bar: 5, qux: 'example' }
+		], [ 'foo', 'qux', 'bar' ]);
 
 		myotherother = new Console('empty other');
 

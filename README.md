@@ -22,7 +22,6 @@ NPM build toolchain?
 
 Worry no more, the HTML5 console is a simple JS file
 that you can plug-in whereever and whenever you want.
-
 Just insert it at the top of `<head>` so it can
 override the `console` API for other scripts:
 
@@ -57,8 +56,8 @@ It is automatically built and deployed to GitHub using the following
 
 ## Multi-Context Debugging
 
-Having issues finding the right log entry again? Why not create a new
-console instance that you can use for each context?
+Having issues finding the right log in a flood of logs again? Why not
+create a new console instance that you can use for each context?
 
 ```javascript
 let instance = new Console('awesome');
@@ -94,6 +93,7 @@ Instructions TBD
 - `console.groupEnd()`
 - `console.info(...arguments)`
 - `console.log(...arguments)`
+- `console.table(data [,labels])`
 - `console.warn(...arguments)`
 - `console.error(...arguments)`
 - `console.time(label)`
@@ -115,7 +115,6 @@ bloat the implementation too much to stay performant.
 - `console.markTimelime()`
 - `console.profile()`
 - `console.profileEnd()`
-- `console.table()`
 - `console.timelime()`
 - `console.timelimeEnd()`
 - `console.timeStamp()`
