@@ -14,6 +14,8 @@ Support our libre Bot Cloud via BTC [1CamMuvrFU1QAMebPoDsL3JrioVDoxezY2](bitcoin
 
 ## Overview
 
+[Direct link to Online Demo](https://rawgit.com/cookiengineer/html5-console/master/example/index.html)
+
 Don't want to deal with Safari or WebKit Mobile and
 its debugging pipeline of > 4GB+?
 
