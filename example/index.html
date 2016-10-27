@@ -29,8 +29,6 @@
 			<li>Press [Shift] + [C] on the keyboard</li>
 		</ul>
 		<script>
-		console = new Console('new context');
-
 		console.log('Hello world');
 		console.clear(); // Removes first Hello world
 
@@ -66,6 +64,11 @@
 		console.error(new Error('An Error instance'));
 
 		console.timeEnd('test');
+
+		// Uncomment to see the empty message.
+		// setTimeout(function() {
+		// 	console.clear();
+		// }, 2000);
 		</script>
 	</body>
 </html>   

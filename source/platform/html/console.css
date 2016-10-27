@@ -43,6 +43,17 @@ aside#console > ul {
 	display: none;
 	margin: 0px;
 	padding: 0px;
+	font-family: 'Monospace';
+	font-weight: normal;
+	font-style: normal;
+	font-size: 16px;
+	line-height: 2em;
+}
+
+aside#console > ul:empty:before {
+	display: block;
+	content: "console \""attr(data-id)"\" is empty.";
+	text-align: center;
 }
 
 aside#console > ul > li {
@@ -50,11 +61,6 @@ aside#console > ul > li {
 	list-style: none;
 	margin: 0px;
 	padding: 0px;
-	font-family: 'Monospace';
-	font-weight: normal;
-	font-style: normal;
-	font-size: 16px;
-	line-height: 2em;
 	border-bottom: 1px solid #272a34;
 }
 

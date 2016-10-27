@@ -80,6 +80,7 @@ lychee.define('lib.console').tags({
 
 			if (element === null) {
 				element = _ELEMENTS[id] = _doc.createElement('ul');
+				element.setAttribute('data-id', id);
 				_WRAPPER.appendChild(element);
 			}
 
@@ -105,7 +106,11 @@ lychee.define('lib.console').tags({
 					}
 
 				} else if (cache.length < lines.length) {
-					// TODO: clear was called. Cleanup
+
+					for (let i = lines.length - 1; i >= 0; i--) {
+						lines[i].parentNode.removeChild(lines[i]);
+					}
+
 				}
 
 			}
