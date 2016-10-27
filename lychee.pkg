@@ -1,0 +1,45 @@
+{
+	"api": {
+		"files": {}
+	},
+	"build": {
+		"environments": {
+			"html/main": {
+				"build": "lib.console",
+				"debug": false,
+				"packages": [
+					[
+						"lib",
+						"./lychee.pkg"
+					]
+				],
+				"sandbox": false,
+				"tags": {
+					"platform": [
+						"html"
+					]
+				},
+				"variant": "library"
+			}
+		},
+		"files": {}
+	},
+	"source": {
+		"environments": {},
+		"files": {
+			"platform": {
+				"html": {
+					"console": [
+						"css",
+						"js"
+					]
+				}
+			}
+		},
+		"tags": {
+			"platform": {
+				"html": "platform/html"
+			}
+		}
+	}
+}

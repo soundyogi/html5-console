@@ -1,0 +1,155 @@
+
+aside#console {
+	display: block;
+	position: fixed;
+	width: auto;
+	height: 32px;
+	top: 0px;
+	right: 0px;
+	bottom: 0px;
+	left: auto;
+	padding: 8px;
+	color: #ffffff;
+	background: #383c4a;
+	border: 0px none;
+	border-radius: 4px 0px 0px 4px;
+	overflow: hidden;
+	z-index: 65535;
+}
+
+aside#console::-webkit-scrollbar {
+	width: 8px;
+	background: transparent;
+}
+
+aside#console::-webkit-scrollbar-thumb {
+	border: 1px solid #383d48;
+	border-radius: 8px;
+	background: #686e7a;
+	cursor: scroll;
+}
+
+aside#console:after {
+	display: block;
+	content: "➠ Console";
+	color: #ffffff;
+	font-size: 32px;
+	line-height: 32px;
+	text-align: center;
+	cursor: pointer;
+}
+
+aside#console > ul {
+	display: none;
+	margin: 0px;
+	padding: 0px;
+}
+
+aside#console > ul > li {
+	display: block;
+	list-style: none;
+	margin: 0px;
+	padding: 0px;
+	font-family: 'Monospace';
+	font-weight: normal;
+	font-style: normal;
+	font-size: 16px;
+	line-height: 2em;
+	border-bottom: 1px solid #272a34;
+}
+
+aside#console > ul > li:last-of-type {
+	border: 0px none;
+}
+
+aside#console > ul > li:before {
+	content: "(L)";
+	display: inline;
+	margin: 0px 1em;
+}
+
+aside#console > ul > li.error:before {
+	content: "(E)";
+	color: #f25056;
+}
+
+aside#console > ul > li.info:before {
+	content: "(I)";
+	color: #4878b2;
+}
+
+aside#console > ul > li.warn:before {
+	content: "(W)";
+	color: #fac536;
+}
+
+aside#console pre {
+	display: block;
+	margin: 0px 0px 2em 0px;
+	padding: 0px 1em;
+	line-height: 1.5em;
+	background: #2d323d;
+}
+
+aside#console a {
+	display: inline;
+	color: #02acde;
+	text-decoration: none;
+}
+
+aside#console i {
+	display: inline;
+	font-weight: normal;
+	font-style: normal;
+}
+
+aside#console i.boolean {
+	color: #02acde;
+}
+
+aside#console i.number,
+aside#console i.error {
+	color: #b0015e;
+}
+
+aside#console i.string {
+	color: #48d05d;
+}
+
+aside#console i.null,
+aside#console i.undefined,
+aside#console i.function {
+	color: #d78787;
+}
+
+aside#console i.property {
+	color: #ffffff;
+}
+
+aside#console i.arguments {
+	color: #f8d34f;
+}
+
+
+
+/*
+ * ACTIVE STATE
+ */
+
+aside#console.active {
+	min-width: 256px;
+	width: 30%;
+	height: auto;
+	padding: 0px;
+	overflow-x: hidden;
+	overflow-y: auto;
+}
+
+aside#console.active:after {
+	display: none;
+}
+
+aside#console.active > ul {
+	display: block;
+}
+
