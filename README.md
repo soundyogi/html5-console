@@ -79,9 +79,8 @@ Instructions TBD
 - `console.assert(condition, ...arguments)`
 - `console.clear()`
 - `console.debug(...arguments)` is a symlink to `console.log(...arguments)`
-- `console.exception(...arguments)` is a symlink to `console.error(...arguments)`
-- `console.log(...arguments)`
 - `console.info(...arguments)`
+- `console.log(...arguments)`
 - `console.warn(...arguments)`
 - `console.error(...arguments)`
 - `console.time(label)`
@@ -103,9 +102,12 @@ bloat the implementation too much to stay performant.
 - `console.group(label)`
 - `console.groupCollapsed()`
 - `console.groupEnd(label)`
+- `console.markTimelime()`
 - `console.profile()`
 - `console.profileEnd()`
 - `console.table()`
+- `console.timelime()`
+- `console.timelimeEnd()`
 - `console.timeStamp()`
 - `console.trace()`
 
