@@ -34,6 +34,7 @@
 			setTimeout(function() {
 
 				console = new lib.console('new context');
+				console.time('test');
 
 				console.log('Hello world');
 				console.clear(); // Removes first Hello world
@@ -43,8 +44,6 @@
 
 				console.assert(true,  'A truey assertion');
 				console.assert(false, 'A falsy assertion');
-
-				console.time('test');
 
 				console.log({
 					foo: 'bar',
@@ -65,14 +64,14 @@
 
 				console.warn('All your logs are belong to us');
 
-				console.error('A simple message');
-
-				console.error(new Error('An Error instance'));
+				console.error('Warp core breach eminent.');
+				console.error(new Error('Resistance is futile.'));
 
 				console.timeEnd('test');
 
-				myother = new Console('other');
-				myother.info('Awesome inspection tables');
+
+				myother = new Console('other context');
+				myother.info('Things are only impossible until they\'re not');
 
 				myother.table({
 					first: { foo: 1, bar: 2 },

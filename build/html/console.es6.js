@@ -413,33 +413,21 @@ const Console = (function(lychee, global, attachments) {
 		let labels = table.labels;
 		let values = table.values;
 
-		// TODO: Values are objects or arrays?
-
-		_console.log(table);
 
 		html.push('<table>');
 
-
-		html.push('<tr><th>(index)</th>');
-
-		for (let l = 0, ll = labels.length; l < ll; l++) {
-			html.push('<th>' + labels[l] + '</th>');
-		}
-
-		html.push('</tr>');
+		html.push('<tr><th>(index)</th>' + labels.map(function(label) {
+			return '<td>' + label + '</td>';
+		}).join('') + '</tr>');
 
 
 		if (values instanceof Array) {
 
 			values.forEach(function(value, v) {
 
-				html.push('<tr><td>' + v + '</td>');
-
-				labels.forEach(function(label) {
-					html.push('<td>' + _render(value[label]) + '</td>');
-				});
-
-				html.push('</tr>');
+				html.push('<tr><td>' + v + '</td>' + labels.map(function(label) {
+					return '<td>' + _render(value[label]) + '</td>';
+				}).join('') + '</tr>');
 
 			});
 
@@ -449,13 +437,9 @@ const Console = (function(lychee, global, attachments) {
 
 				let value = values[v];
 
-				html.push('<tr><td>' + v + '</td>');
-
-				labels.forEach(function(label) {
-					html.push('<td>' + _render(value[label]) + '</td>');
-				});
-
-				html.push('</tr>');
+				html.push('<tr><td>' + v + '</td>' + labels.map(function(label) {
+					return '<td>' + _render(value[label]) + '</td>';
+				}).join('') + '</tr>');
 
 			}
 
